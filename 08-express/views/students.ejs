@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Students</title>
+    <script src="/js/students.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>Hello, EJS!</h1>
+<!--
+  - 通过它可以将 render 传递进来的数据直接在网页中显示出来
+ -->
+<hr>
+<table>
+    <thead>
+    <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>地址</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <% for (const student of students) { %>
+        <tr>
+            <td><%= student.id; %></td>
+            <td><%= student.name; %></td>
+            <td><%= student.age; %></td>
+            <td><%= student.gender; %></td>
+            <td><%= student.address; %></td>
+            <td>
+                <a href="/students/edit/<%= student.id; %>">编辑</a>
+                <a href="/students/delete/<%= student.id; %>" class="delete-btn">删除</a>
+            </td>
+        </tr>
+    <% } %>
+</table>
+<hr>
+<form action="/students/new" method="post">
+    <label>
+        姓名：
+        <input type="text" name="name">
+    </label>
+    <br>
+    <label>
+        年龄：
+        <input type="number" name="age">
+    </label>
+    <br>
+    <label>
+        性别：
+        <label>
+            男
+            <input type="radio" name="gender" value="male">
+        </label>
+        <label>
+            女
+            <input type="radio" name="gender" value="female">
+        </label>
+    </label>
+    <br>
+    <label>
+        地址：
+        <input type="text" name="address">
+    </label>
+    <br>
+    <input type="submit" value="添加学生"/>
+</form>
+</body>
+</html>
