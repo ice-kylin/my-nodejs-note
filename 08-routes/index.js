@@ -15,9 +15,7 @@ const studentsRoutes = require("./routes/students");
             path.resolve(__dirname, "./public"),
         ),
     );
-    app.use(
-        express.urlencoded({extended: true}),
-    );
+    app.use(express.urlencoded({extended: true}));
 }
 
 // 使路由生效
