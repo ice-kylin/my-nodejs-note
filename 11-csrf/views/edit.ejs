@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Edit</title>
+</head>
+<body>
+<h1>编辑学生</h1>
+<hr>
+<form action="/students/modify" method="post">
+    <input type="hidden" name="id" value="<%= student.id; %>"/>
+    <label>
+        姓名：
+        <input type="text" name="name" value="<%= student.name; %>">
+    </label>
+    <br>
+    <label>
+        年龄：
+        <input type="number" name="age" value="<%= student.age; %>">
+    </label>
+    <br>
+    <label>
+        性别：
+        <label>
+            男
+            <input type="radio" name="gender" value="male" <%= student.gender === "男" ? "checked" : ""; %>>
+        </label>
+        <label>
+            女
+            <input type="radio" name="gender" value="female" <%= student.gender === "女" ? "checked" : ""; %>>
+        </label>
+    </label>
+    <br>
+    <label>
+        地址：
+        <input type="text" name="address" value="<%= student.address; %>">
+    </label>
+    <br>
+    <input type="submit" value="修改学生"/>
+</form>
+</body>
+</html>
