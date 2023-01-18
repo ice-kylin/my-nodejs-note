@@ -7,15 +7,13 @@ router.get("/", (req, res) => {
 });
 
 router.post("/set", (req, res) => {
-    if (req.cookies.username === undefined) {
-        const {username, password} = req.body;
+    const {username, password} = req.body;
 
-        if (username === "admin" && password === "123456") {
-            res.cookie("username", "admin");
-            res.redirect("/students");
-        } else {
-            res.send("<h1>用户名或密码错误</h1>");
-        }
+    if (username === "admin" && password === "123456") {
+        res.cookie("username", "admin");
+        res.redirect("/students");
+    } else {
+        res.send("<h1>用户名或密码错误</h1>");
     }
 });
 
