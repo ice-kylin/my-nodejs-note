@@ -12,22 +12,20 @@ const loginRoutes = require("./routes/login");
 const studentsRoutes = require("./routes/students");
 
 {
-    app.set("view engine", "ejs");
-    app.set("views", path.resolve(__dirname, "./views"));
-    app.use(
-        express.static(
-            path.resolve(__dirname, "./public"),
-        ),
-    );
-    app.use(express.urlencoded({extended: true}));
-    app.use(cookieParser());
-    app.use(session({
-        secret: "歪比巴卜",
-        store: new FileStore({
-            path: path.resolve(__dirname, "./data/session"),
-            secret: "歪比歪比",
-        }),
-    }));
+  app.set("view engine", "ejs");
+  app.set("views", path.resolve(__dirname, "./views"));
+  app.use(express.static(path.resolve(__dirname, "./public")));
+  app.use(express.urlencoded({ extended: true }));
+  app.use(cookieParser());
+  app.use(
+    session({
+      secret: "歪比巴卜",
+      store: new FileStore({
+        path: path.resolve(__dirname, "./data/session"),
+        secret: "歪比歪比",
+      }),
+    })
+  );
 }
 
 /*
@@ -51,10 +49,10 @@ app.use("/login", loginRoutes);
 app.use("/students", studentsRoutes);
 
 {
-    app.use((req, res) => {
-        res.status(404).send("<h1>404 Not Found</h1>");
-    });
-    app.listen(3000, () => {
-        console.log("http://localhost:3000");
-    });
+  app.use((req, res) => {
+    res.status(404).send("<h1>404 Not Found</h1>");
+  });
+  app.listen(3000, () => {
+    console.log("http://localhost:3000");
+  });
 }

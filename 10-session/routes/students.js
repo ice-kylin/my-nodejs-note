@@ -9,7 +9,7 @@ const ROOT_PATH = "/students";
 
 async function updateJSON(o) {
     await fs.writeFile(
-        path.join(__dirname, "../students.json"),
+        path.join(__dirname, "../data/students.json"),
         JSON.stringify(o, null, 4),
     );
 }
@@ -50,7 +50,7 @@ router.post("/new", (req, res) => {
 
 // 删除学生
 router.get("/delete/:id", (req, res) => {
-    const id = +(req.params.id);
+    const id = +req.params.id;
 
     const index = STUDENTS.findIndex((student) => student.id === id);
     STUDENTS.splice(index, 1);
@@ -63,7 +63,7 @@ router.get("/delete/:id", (req, res) => {
 
 // 编辑学生
 router.get("/edit/:id", (req, res) => {
-    const id = +(req.params.id);
+    const id = +req.params.id;
 
     const student = STUDENTS.find((student) => student.id === id);
     res.render("edit", {
